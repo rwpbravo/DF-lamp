@@ -1,0 +1,231 @@
+// components/site-header.tsx
+"use client"
+
+import Link from "next/link"
+import Image from "next/image"
+import { Button } from "@/components/ui/button"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Menu, Phone } from 'lucide-react'
+import { usePathname } from "next/navigation"
+
+const links = [
+  { href: "/overview", label: "Overview" },
+  { href: "/types", label: "Types" },
+  { href: "/brands", label: "Brands" },
+  { href: "/comparison", label: "Comparison" },
+  { href: "/buyers-guide", label: "Buyer’s Guide" },
+]
+
+export default function SiteHeader() {
+  const pathname = usePathname()
+  return (
+    <header className="sticky top-0 z-40 w-full border-b bg-white/90 backdrop-blur">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4">
+        <div className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-2" aria-label="C-ARMS.NET Home">
+            <Image
+              src="/brand/logo.webp"
+              alt="C-ARMS.NET logo"
+              width={140}
+              height={36}
+              priority
+              className="h-9 w-auto"
+            />
+            <span className="sr-only">C-ARMS.NET</span>
+          </Link>
+          <span className="hidden h-5 w-px bg-slate-200 md:block" />
+          <a
+            href="tel:8888387488"
+            className="hidden items-center gap-1 text-sm text-slate-600 hover:text-slate-900 md:flex"
+          >
+            <Phone className="h-4 w-4 text-teal-600" />
+            {"888-838-7488"}
+          </a>
+        </div>
+        <nav className="hidden items-center gap-4 md:flex">
+          {links.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className={`text-sm transition hover:text-slate-900 ${
+                pathname === l.href ? "text-slate-900" : "text-slate-600"
+              }`}
+            >
+              {l.label}
+            </Link>
+          ))}
+          <Button asChild className="bg-teal-600 hover:bg-teal-700">
+            <Link href="/contact">Request a Quote</Link>
+          </Button>
+        </nav>
+        <div className="md:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="outline" size="icon" aria-label="Open menu">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-80">
+              <div className="mt-8 grid gap-3">
+                {links.map((l) => (
+                  <Link key={l.href} href={l.href} className="text-base text-slate-800">
+                    {l.label}
+                  </Link>
+                ))}
+                <Button asChild className="mt-2 bg-teal-600 hover:bg-teal-700">
+                  <Link href="/contact">Request a Quote</Link>
+                </Button>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
+      </div>
+    </header>
+  )
+}
+
+// components/chat-widget.tsx
+"use client"
+
+import { useState } from "react"
+import { MessageCircle, X } from 'lucide-react'
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
+
+export default function ChatWidget() {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="fixed bottom-4 right-4 z-40">
+      {open ? (
+        <div className="w-80 rounded-xl border bg-white shadow-xl">
+          <div className="flex items-center justify-between border-b p-3">
+            <div className="text-sm font-medium">C-Arm Help</div>
+            <button
+              className="text-slate-500 hover:text-slate-900"
+              aria-label="Close chat"
+              onClick={() => setOpen(false)}
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+          <div className="max-h-64 space-y-3 overflow-auto p-3 text-sm">
+            <p className="text-slate-700">Hi! Have questions about models, pricing, or availability?</p>
+            <ul className="list-disc pl-5 text-slate-700">
+              <li>
+                Compare models:{" "}
+                <Link href="/comparison" className="text-teal-700 underline">
+                  C-Arm Comparison
+                </Link>
+              </li>
+              <li>
+                Download the guide:{" "}
+                <Link href="/buyers-guide" className="text-teal-700 underline">
+                  Buyer’s Guide (PDF)
+                </Link>
+              </li>
+              <li>
+                Get a quote:{" "}
+                <Link href="/contact" className="text-teal-700 underline">
+                  Request a Quote
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      ) : null}
+      <Button onClick={() => setOpen((v) => !v)} className="mt-3 rounded-full bg-teal-600 px-4 py-2 hover:bg-teal-700">
+        <MessageCircle className="mr-2 h-4 w-4" />
+        {open ? "Hide" : "Chat"}
+      </Button>
+    </div>
+  )
+}
+
+// app/page.tsx (home)
+import Image from "next/image"
+import { Metadata } from "next"
+import { Hero } from "@/components/hero"
+import { Features } from "@/components/features"
+import { Testimonials } from "@/components/testimonials"
+import { CTA } from "@/components/cta"
+
+export const metadata: Metadata = {
+  title: "C-ARMS.NET",
+  description: "Discover the best C-Arms for your medical imaging needs.",
+}
+
+export default function Home() {
+  return (
+    <>
+      <Hero>
+        <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2">
+          <div className="md:pr-4">
+            <h1 className="text-3xl font-bold tracking-tight sm:text-5xl">
+              Revolutionize Your Medical Imaging with C-ARMS.NET
+            </h1>
+            <p className="mt-6 text-lg text-slate-600">
+              Our cutting-edge C-Arms offer superior performance and reliability for your imaging needs.
+            </p>
+          </div>
+          <div className="relative md:mt-0">
+            <Image
+              src="/brand/logo.webp"
+              alt="C-ARMS.NET logo"
+              width={420}
+              height={420}
+              className="mx-auto h-auto w-[320px] sm:w-[360px] lg:w-[420px] rounded-xl border bg-white object-contain p-6 shadow-sm"
+              priority
+            />
+          </div>
+        </div>
+      </Hero>
+      <Features />
+      <Testimonials />
+      <CTA />
+    </>
+  )
+}
+
+// app/overview/page.tsx
+import Image from "next/image"
+import { Metadata } from "next"
+import { OverviewHero } from "@/components/overview-hero"
+import { OverviewFeatures } from "@/components/overview-features"
+import { OverviewTestimonials } from "@/components/overview-testimonials"
+import { OverviewCTA } from "@/components/overview-cta"
+
+export const metadata: Metadata = {
+  title: "Overview - C-ARMS.NET",
+  description: "Learn more about the features and benefits of our C-Arms.",
+}
+
+export default function Overview() {
+  return (
+    <>
+      <OverviewHero>
+        <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2">
+          <div className="md:pr-4">
+            <h1 className="text-3xl font-bold tracking-tight sm:text-5xl">
+              Comprehensive Overview of C-ARMS.NET
+            </h1>
+            <p className="mt-6 text-lg text-slate-600">
+              Discover the advanced capabilities and features of our C-Arms solutions.
+            </p>
+          </div>
+          <div className="relative md:mt-0">
+            <Image
+              src="/brand/logo.webp"
+              alt="C-ARMS.NET logo"
+              width={420}
+              height={420}
+              className="mx-auto rounded-lg border bg-white object-contain p-6"
+            />
+          </div>
+        </div>
+      </OverviewHero>
+      <OverviewFeatures />
+      <OverviewTestimonials />
+      <OverviewCTA />
+    </>
+  )
+}
