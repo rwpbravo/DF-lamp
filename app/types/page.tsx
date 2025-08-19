@@ -12,8 +12,8 @@ export const metadata = {
 
 const tiles = [
   { title: "Mini C-Arms", href: "/types/mini", img: "/mini-c-arm.png" },
-  { title: "Full-Size C-Arms", href: "/types/full-size", img: "/images/tiles/full-size.jpg" },
-  { title: "Compact C-Arms", href: "/types/compact", img: "/images/tiles/compact.jpg" },
+  { title: "Full-Size C-Arms", href: "/types/full-size", img: "/images/models/ge-oec-9900-elite/hero.avif" },
+  { title: "Compact C-Arms", href: "/types/compact", img: "/images/models/ziehm-solo/hero.jpg" },
   { title: "Mobile vs Fixed", href: "/types/mobile-vs-fixed", img: "/mobile-vs-fixed-c-arm.png" },
   {
     title: "Surgical Applications",

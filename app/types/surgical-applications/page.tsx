@@ -1,6 +1,7 @@
 import SiteHeader from "@/components/site-header"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import Link from "next/link"
+import Image from "next/image"
 
 export const metadata = {
   title: "C-Arm Surgical Applications | Orthopedic, Pain, Vascular | c-arms.net",
@@ -21,7 +22,24 @@ export default function SurgicalApplicationsPage() {
             { label: "Surgical Applications", href: "/types/surgical-applications" },
           ]}
         />
-        <h1 className="mb-3 text-3xl font-bold">Surgical Applications</h1>
+        <div className="mb-8 grid gap-6 md:grid-cols-2 md:items-center">
+          <div>
+            <h1 className="mb-3 text-3xl font-bold">Surgical Applications</h1>
+            <p className="mt-2 max-w-prose text-slate-600">
+              C-arm fluoroscopy systems are essential across multiple surgical specialties, providing real-time imaging
+              guidance for precise procedures.
+            </p>
+          </div>
+          <div className="flex justify-center">
+            <Image
+              src="/brand/logo-hero.webp"
+              alt="C-ARMS.NET Logo"
+              width={400}
+              height={300}
+              className="rounded-lg border bg-white object-contain p-6"
+            />
+          </div>
+        </div>
         <ul className="mt-2 grid gap-3 md:grid-cols-2">
           {[
             { label: "Orthopedic", href: "/use-cases/orthopedic" },
