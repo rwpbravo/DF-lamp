@@ -11,6 +11,7 @@ const links = [
   { href: "/overview", label: "Overview" },
   { href: "/types", label: "Types" },
   { href: "/brands", label: "Brands" },
+  { href: "/resources", label: "Resources" },
   { href: "/comparison", label: "Comparison" },
 ]
 
