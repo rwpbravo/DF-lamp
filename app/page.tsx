@@ -9,18 +9,33 @@ import { QuoteBanner } from "@/components/quote-banner"
 import { FAQSchema } from "@/components/faq-schema"
 
 export const metadata = {
-  title: "Comprehensive C-Arm Imaging Solutions | c-arms.net",
+  title: "Buy Used C-Arm Systems | Pricing, Specs & Expert Guidance | c-arms.net",
   description:
-    "Learn, compare, and find the right C-Arm for your practice. Authoritative guides on mini, full-size, mobile C-arms plus pricing, models, and buyer tips.",
+    "Compare 50+ C-Arm models from GE, Siemens, Philips & more. Get pricing, specs, and expert buying advice. Free quotes on refurbished systems. Call 888-838-7488.",
   alternates: {
     canonical: "https://www.c-arms.net/",
   },
   openGraph: {
-    title: "Comprehensive C-Arm Imaging Solutions | c-arms.net",
+    title: "Buy Used C-Arm Systems | Pricing, Specs & Expert Guidance",
     description:
-      "Information-first resource to research C-arm imaging systems including GE OEC 9900, Siemens Cios, Philips Pulsera, and more.",
+      "Compare 50+ C-Arm models from GE, Siemens, Philips & more. Get pricing, specs, and expert buying advice. Free quotes on refurbished systems.",
     url: "https://www.c-arms.net/",
     type: "website",
+    images: [
+      {
+        url: "https://www.c-arms.net/brand/logo-hero.webp",
+        width: 1200,
+        height: 630,
+        alt: "C-ARMS.NET - Medical Imaging Equipment Specialists",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Buy Used C-Arm Systems | Pricing, Specs & Expert Guidance",
+    description:
+      "Compare 50+ C-Arm models from GE, Siemens, Philips & more. Get pricing, specs, and expert buying advice.",
+    images: ["https://www.c-arms.net/brand/logo-hero.webp"],
   },
 }
 
@@ -258,8 +273,9 @@ export default function HomePage() {
               <CardTitle className="text-lg">What is a C-arm machine?</CardTitle>
             </CardHeader>
             <CardContent className="text-sm text-slate-600">
-              A C-Arm is a mobile fluoroscopy imaging system that uses X-rays in a C-shaped gantry for real-time imaging
-              during procedures such as orthopedics, pain management, and vascular interventions.
+              A C-Arm is a fluoroscopy system with an X-ray source and detector mounted on a C-shaped arm. It provides
+              live imaging for guidance during procedures such as orthopedics, pain management, and vascular
+              interventions.
             </CardContent>
           </Card>
           <Card>

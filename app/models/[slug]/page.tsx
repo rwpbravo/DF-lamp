@@ -1,5 +1,6 @@
 import SiteHeader from "@/components/site-header"
 import { Breadcrumbs } from "@/components/breadcrumbs"
+import { BreadcrumbSchema } from "@/components/breadcrumb-schema"
 import { getModelBySlug } from "@/data/models"
 import Image from "next/image"
 import Link from "next/link"
@@ -76,9 +77,23 @@ export async function generateMetadata({ params }: Props) {
     }
   }
   return {
-    title: `${model.name} | Specs, Features, and Pricing | c-arms.net`,
-    description: `${model.name} specs including detector type (${model.detectorType}), generator power (${model.generatorKw} kW), and typical price range. Ideal for ${model.type} procedures.`,
+    title: `${model.name} C-Arm | ${model.price} | Refurbished | c-arms.net`,
+    description: `${model.name}: ${model.detectorType} detector, ${model.generatorKw}kW generator. ${model.price} refurbished. Compare specs, view images, get instant quotes. Trusted by 500+ facilities.`,
     alternates: { canonical: `https://www.c-arms.net/models/${model.slug}` },
+    openGraph: {
+      title: `${model.name} C-Arm System | ${model.price}`,
+      description: `${model.name} with ${model.detectorType} detector. ${model.price} refurbished. Get pricing and specs.`,
+      url: `https://www.c-arms.net/models/${model.slug}`,
+      type: "product",
+      images: [
+        {
+          url: `https://www.c-arms.net${getModelImagePath(model.slug, "hero")}`,
+          width: 1200,
+          height: 630,
+          alt: `${model.name} C-Arm System`,
+        },
+      ],
+    },
   }
 }
 
@@ -94,9 +109,18 @@ export default function ModelDetail({ params }: Props) {
       </main>
     )
   }
+
+  const breadcrumbItems = [
+    { name: "Home", url: "https://www.c-arms.net/" },
+    { name: "Brands", url: "https://www.c-arms.net/brands" },
+    { name: model.brand, url: `https://www.c-arms.net/brands/${model.brandSlug}` },
+    { name: model.name, url: `https://www.c-arms.net/models/${model.slug}` },
+  ]
+
   return (
     <main>
       <ProductSchema model={model} />
+      <BreadcrumbSchema items={breadcrumbItems} />
       <SiteHeader />
       <section className="container mx-auto px-4 py-8">
         <Breadcrumbs
@@ -111,7 +135,7 @@ export default function ModelDetail({ params }: Props) {
           <div>
             <Image
               src={getModelImagePath(model.slug, "hero") || "/placeholder.svg"}
-              alt={`${model.name} C-Arm System`}
+              alt={`${model.name} C-Arm fluoroscopy system with ${model.detectorType} detector for ${model.type} imaging`}
               width={560}
               height={380}
               className="rounded-lg border bg-white object-contain p-2"

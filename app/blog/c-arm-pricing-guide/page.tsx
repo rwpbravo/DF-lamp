@@ -1,20 +1,51 @@
 import SiteHeader from "@/components/site-header"
 import { Breadcrumbs } from "@/components/breadcrumbs"
+import { BreadcrumbSchema } from "@/components/breadcrumb-schema"
+import { ArticleSchema } from "@/components/article-schema"
 import { FAQSchema } from "@/components/faq-schema"
 import { QuoteBanner } from "@/components/quote-banner"
 import Link from "next/link"
 import Image from "next/image"
 
 export const metadata = {
-  title: "C-Arm Pricing Guide: How Much Does a C-Arm Cost? | c-arms.net",
+  title: "C-Arm Pricing Guide 2025: Complete Comparison & Cost Breakdown",
   description:
-    "Explore C-Arm costs, from used mini C-arms ($25k) to new full-size flat panel systems ($200k+). Learn what factors influence price: detector, brand, and condition.",
+    "C-Arm costs range from $25k (used mini) to $250k+ (new vascular). Learn what factors affect price: detector type, brand, condition. Compare GE, Siemens, Philips pricing.",
   alternates: { canonical: "https://www.c-arms.net/blog/c-arm-pricing-guide" },
+  openGraph: {
+    title: "C-Arm Pricing Guide 2025: How Much Does a C-Arm Cost?",
+    description:
+      "Complete C-Arm pricing breakdown. $25k-$250k+ depending on type, detector, and condition. Expert buying guidance.",
+    url: "https://www.c-arms.net/blog/c-arm-pricing-guide",
+    type: "article",
+    images: [
+      {
+        url: "https://www.c-arms.net/images/c-arm-pricing-hero.png",
+        width: 1200,
+        height: 630,
+        alt: "C-Arm pricing guide showing different system types and price ranges",
+      },
+    ],
+  },
 }
 
 export default function PricingGuidePage() {
+  const breadcrumbItems = [
+    { name: "Home", url: "https://www.c-arms.net/" },
+    { name: "Blog", url: "https://www.c-arms.net/blog" },
+    { name: "C-Arm Pricing Guide", url: "https://www.c-arms.net/blog/c-arm-pricing-guide" },
+  ]
+
   return (
     <main>
+      <BreadcrumbSchema items={breadcrumbItems} />
+      <ArticleSchema
+        headline="C-Arm Pricing Guide: How Much Does a C-Arm Cost?"
+        description="Comprehensive guide to C-Arm pricing covering mini, compact, and full-size systems. Learn what factors influence cost and how to get the best value."
+        datePublished="2025-01-15"
+        dateModified="2025-01-15"
+        imageUrl="https://www.c-arms.net/images/c-arm-pricing-hero.png"
+      />
       <SiteHeader />
       <section className="container mx-auto px-4 py-8">
         <Breadcrumbs
@@ -34,7 +65,7 @@ export default function PricingGuidePage() {
 
           <Image
             src="/images/c-arm-pricing-hero.png"
-            alt="A collage of different c-arm systems with price tags"
+            alt="Comparison chart showing C-arm pricing ranges for different system types and configurations"
             width={800}
             height={400}
             className="rounded-lg"
